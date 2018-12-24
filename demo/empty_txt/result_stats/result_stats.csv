@@ -1,0 +1,4 @@
+file_name, size, is_empty
+test1.txt, 0, Yes
+test2.txt, 0, Yes
+test3.txt, 30, No
