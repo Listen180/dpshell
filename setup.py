@@ -28,7 +28,7 @@ with codecs.open('README.rst' ,'r') as f:
 
 setuptools.setup(
 #setup(
-    name="pyshell",
+    name="py-shell",
     version=version_number,
     author="Sen LEI",
     author_email="sen.lei@outlook.com",
