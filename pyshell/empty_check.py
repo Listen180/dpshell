@@ -1,13 +1,49 @@
-#!/bin/bash
-# *********************************************************
+#!/home/leisen/anaconda3/bin/python3
+# -*- coding: UTF-8 -*-
+
+# ********************************************************
 # * Author        : LEI Sen
 # * Email         : sen.lei@outlook.com
-# * Create time   : 2018-12-24 16:22
-# * Last modified : 2018-12-24 16:22
-# * Filename      : empty_check.sh
+# * Create time   : 2018-12-24 17:56
+# * Last modified : 2018-12-24 17:56
+# * Filename      : empty_check.py
 # * Description   : 
 # *********************************************************
 
+
+import sys
+import os
+import click
+#import subprocess
+#import shlex
+import platform
+
+
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+OS_TYPE = platform.platform().split('-')[0]
+
+
+
+@click.command()
+@click.option(
+    'file_type', '--type', '-t',
+    help="Specify the file type. ",
+    required=True,
+#    prompt="Please specify package name",
+)
+@click.argument(
+    'folder_dir', 
+    nargs=1, 
+    type=click.Path(exists=True, file_okay=False, writable=True), 
+    required=True, 
+#    default='.',
+)
+def main(file_dir, file_type):
+    """
+    Python command line tool to check empty files. 
+    """
+    command_code = """
 ## Make sure you have the foder location specified. 
 if [ "$1" == "" ]; then
     echo "parameter 1 missing: file folder location needed!"
@@ -57,3 +93,5 @@ for file in $file_list; do
     final_results="${file_name}, ${file_size}, ${is_empty}"
     echo "${final_results}" >> $result_file
 done
+"""
+    os.system(command_code)
