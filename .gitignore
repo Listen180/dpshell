@@ -1,3 +1,4 @@
 .spyproject/
+build/
 dist/
 *.egg-info/
