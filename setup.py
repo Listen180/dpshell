@@ -35,7 +35,7 @@ setuptools.setup(
     description="A Python command line tool to deal with file information extraction. ",
     long_description=long_description,
     #long_description_content_type="text/markdown",
-    url="https://github.com/Dual-Points/dplearn",
+    url="https://github.com/Listen180/pyshell",
     packages=setuptools.find_packages(),
     license="BSD 3-clause",
     classifiers=[
@@ -46,6 +46,6 @@ setuptools.setup(
     ],
     keywords='python package pypi shell file info extraction',
     entry_points={'console_scripts': [
-        'isempty = pyshell.empty_check:main',
+        'isempty = py-shell.empty_check:main',
         ]},
 )
