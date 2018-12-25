@@ -62,7 +62,7 @@ for fp_sub in $fp_sub_list; do
 		let f_index_true=f_index_true+1
 		#cp -r $fp_sub $new_folder
 		f_wo_ext=${f%"$suffix"}
-		cp $f_wo_ext.* $new_folder
+		cp "$f_wo_ext".* "$new_folder"
 		#echo $f_name
 		#echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
 		break
