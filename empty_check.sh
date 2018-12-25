@@ -47,11 +47,12 @@ f_index_true=0
 
 for fp_sub in $fp_sub_list; do
     if [ -d $fp_sub ]; then
-	#echo "$fp_sub"
+	sub_folder_name=${fp_sub#"$file_path"}
+	echo "$sub_folder_name"
 	f_list=$fp_sub/*.$2
+	let f_index=f_index+1
+	echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
 	for f in $f_list; do
-	    let f_index=f_index+1
-	    echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
 	    f_name=${f#"$fp_sub/"}
 	    ## Get file size
 	    f_size="$(wc -c < "$f")"
@@ -59,8 +60,9 @@ for fp_sub in $fp_sub_list; do
 		is_empty='Yes'
 		cp -r $fp_sub $new_folder
 		let f_index_true=f_index_true+1
-		echo $f_name
+		#echo $f_name
 		#echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
+		break
 	    else
 		is_empty='No'
 	    fi
