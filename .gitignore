@@ -1,4 +1,7 @@
 .spyproject/
+
 build/
 dist/
 *.egg-info/
+
+demo/empty_txt/result_stats/
