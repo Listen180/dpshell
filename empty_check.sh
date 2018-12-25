@@ -39,6 +39,11 @@ fi
 
 echo "file_name, size, is_empty" > $result_f
 
+f_num=($f_sub_list)
+f_num=${#f_num[@]}
+f_num="$(find ${file_path} -mindepth 1 -maxdepth 1 -type d | wc -l)"
+f_index=0
+
 for fp_sub in $fp_sub_list; do
     if [ -d $fp_sub ]; then
 	#echo "$fp_sub"
@@ -51,6 +56,8 @@ for fp_sub in $fp_sub_list; do
 	    if [ $f_size -eq 0 ]; then
 		is_empty='Yes'
 		cp -r $fp_sub $new_folder
+		let f_index=f_index+1
+		echo -ne "Progress: ${f_index}/${f_num} \r"
 	    else
 		is_empty='No'
 	    fi
@@ -60,6 +67,11 @@ for fp_sub in $fp_sub_list; do
 	done
     fi
 done
+echo "Progress: ${f_index}/${f_num}"
+
+echo """
+... Done. 
+"""
 
 ####
 exit
@@ -145,3 +157,7 @@ for file in $file_list; do
     final_results="${file_name}, ${file_size}, ${is_empty}"
     echo "${final_results}" >> $result_file
 done
+
+echo """
+... Done. 
+"""
