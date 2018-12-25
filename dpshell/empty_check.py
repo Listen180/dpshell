@@ -33,7 +33,7 @@ OS_TYPE = platform.platform().split('-')[0]
 #    prompt="Please specify package name",
 )
 @click.argument(
-    'folder_dir', 
+    'file_dir', 
     nargs=1, 
     type=click.Path(exists=True, file_okay=False, writable=True), 
     required=False, 
