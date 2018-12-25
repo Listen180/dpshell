@@ -29,14 +29,14 @@ OS_TYPE = platform.platform().split('-')[0]
 @click.option(
     'file_type', '--type', '-t',
     help="Specify the file type. ",
-    required=True,
+    required=False,
 #    prompt="Please specify package name",
 )
 @click.argument(
     'folder_dir', 
     nargs=1, 
     type=click.Path(exists=True, file_okay=False, writable=True), 
-    required=True, 
+    required=False, 
 #    default='.',
 )
 def main(file_dir, file_type):
