@@ -43,21 +43,24 @@ f_num=($f_sub_list)
 f_num=${#f_num[@]}
 f_num="$(find ${file_path} -mindepth 1 -maxdepth 1 -type d | wc -l)"
 f_index=0
+f_index_true=0
 
 for fp_sub in $fp_sub_list; do
     if [ -d $fp_sub ]; then
 	#echo "$fp_sub"
 	f_list=$fp_sub/*.$2
 	for f in $f_list; do
+	    let f_index=f_index+1
+	    echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
 	    f_name=${f#"$fp_sub/"}
-	    echo $f_name
 	    ## Get file size
 	    f_size="$(wc -c < "$f")"
 	    if [ $f_size -eq 0 ]; then
 		is_empty='Yes'
 		cp -r $fp_sub $new_folder
-		let f_index=f_index+1
-		echo -ne "Progress: ${f_index}/${f_num} \r"
+		let f_index_true=f_index_true+1
+		echo $f_name
+		#echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
 	    else
 		is_empty='No'
 	    fi
@@ -67,7 +70,7 @@ for fp_sub in $fp_sub_list; do
 	done
     fi
 done
-echo "Progress: ${f_index}/${f_num}"
+echo "Progress: ${f_index}/${f_num} (empty: ${f_index_true})"
 
 echo """
 ... Done. 
