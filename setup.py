@@ -28,7 +28,7 @@ with codecs.open('README.rst' ,'r') as f:
 
 setuptools.setup(
 #setup(
-    name="py-shell",
+    name="dpshell",
     version=version_number,
     author="Sen LEI",
     author_email="sen.lei@outlook.com",
@@ -46,6 +46,6 @@ setuptools.setup(
     ],
     keywords='python package pypi shell file info extraction',
     entry_points={'console_scripts': [
-        'isempty = py-shell.empty_check:main',
+        'isempty = dpshell.empty_check:main',
         ]},
 )
