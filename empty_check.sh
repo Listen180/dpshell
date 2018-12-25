@@ -26,6 +26,7 @@ echo ""
 file_path=$1/
 file_list=$1/*.$2
 fp_sub_list=$1/*
+suffix=.$2
 
 new_folder=$1_result_stats/
 
@@ -58,8 +59,10 @@ for fp_sub in $fp_sub_list; do
 	    f_size="$(wc -c < "$f")"
 	    if [ $f_size -eq 0 ]; then
 		is_empty='Yes'
-		cp -r $fp_sub $new_folder
 		let f_index_true=f_index_true+1
+		#cp -r $fp_sub $new_folder
+		f_wo_ext=${f%"$suffix"}
+		cp $f_wo_ext.* $new_folder
 		#echo $f_name
 		#echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
 		break
