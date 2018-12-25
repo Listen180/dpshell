@@ -29,69 +29,60 @@ OS_TYPE = platform.platform().split('-')[0]
 @click.option(
     'file_type', '--type', '-t',
     help="Specify the file type. ",
-    required=False,
+    required=True,
 #    prompt="Please specify package name",
 )
 @click.argument(
     'file_dir', 
     nargs=1, 
     type=click.Path(exists=True, file_okay=False, writable=True), 
-    required=False, 
+    required=True, 
 #    default='.',
 )
 def main(file_dir, file_type):
     """
     Python command line tool to check empty files. 
     """
-    command_code = """
-## Make sure you have the foder location specified. 
-if [ "$1" == "" ]; then
-    echo "parameter 1 missing: file folder location needed!"
-    exit
-fi
+    print('')
+    print(f'Checking empty files in folder [{file_dir}] ...')
+    print('')
+    command_code = f"""
+file_path={file_dir}/
+file_list={file_dir}/*.{file_type}
+prefix={file_dir}/
+suffix=.{file_type}
+new_folder={file_dir}/result_stats/
 
-if [ "$2" == "" ]; then
-    echo "parameter 2 missing: file type needed!"
-    exit
-fi
-
-echo ""
-echo "Checking empty files in folder [$1/] ..."
-echo ""
-
-file_path=$1/
-file_list=$1/*.$2
-#echo $file_list
-#cd $file_path
-
-f_num=($file_list)
-file_num_total=${#f_num[@]}
-
-f_index=0
-
-rm -r $1/result_stats
-mkdir $1/result_stats
-result_file="$1/result_stats/result_stats.csv"
-
+rm -r {file_dir}/result_stats
+mkdir {file_dir}/result_stats
+result_file="{file_dir}/result_stats/result_stats.csv"
+""" + """
 if [ -f $result_file ]; then
     rm $result_file
 fi
-
+""" + """
 echo "file_name, size, is_empty" > $result_file
-
+""" + """
 for file in $file_list; do
-    file_name="${file/$file_path/}"
+    file_name=${file#"$prefix"}
+    #file_name=${file_name%"$suffix"}
     echo "$file_name"
     ## Get file size
     file_size="$(wc -c < "$file")"
-    if [ $file_size == 0 ]; then
-	is_empty='Yes'
+    if [ $file_size -eq 0 ]; then
+        is_empty='Yes'
+        cp $file $new_folder
     else
-	is_empty='No'
+        is_empty='No'
     fi
     ## Get final results
     final_results="${file_name}, ${file_size}, ${is_empty}"
     echo "${final_results}" >> $result_file
 done
 """
+    #print(command_code)
     os.system(command_code)
+
+
+if __name__ == '__main__':
+    main()
