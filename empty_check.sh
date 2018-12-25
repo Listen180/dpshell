@@ -65,7 +65,7 @@ for fp_sub in $fp_sub_list; do
 		cp "$f_wo_ext".* "$new_folder"
 		#echo $f_name
 		#echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
-		break
+		#break
 	    else
 		is_empty='No'
 	    fi
