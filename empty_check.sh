@@ -48,7 +48,7 @@ f_index_true=0
 for fp_sub in $fp_sub_list; do
     if [ -d $fp_sub ]; then
 	sub_folder_name=${fp_sub#"$file_path"}
-	echo "$sub_folder_name"
+	echo ">>>>>>>>>>>>>>>>>>>> $sub_folder_name"
 	f_list=$fp_sub/*.$2
 	let f_index=f_index+1
 	echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
