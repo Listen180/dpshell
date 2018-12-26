@@ -61,7 +61,7 @@ if [ -f $result_file ]; then
     rm $result_file
 fi
 """ + """
-echo "file_name, size, is_empty" > $result_file
+echo "file_name,size,is_empty" > $result_file
 """ + """
 for file in $file_list; do
     file_name=${file#"$prefix"}
@@ -76,7 +76,7 @@ for file in $file_list; do
         is_empty='No'
     fi
     ## Get final results
-    final_results="${file_name}, ${file_size}, ${is_empty}"
+    final_results="${file_name},${file_size},${is_empty}"
     echo "${final_results}" >> $result_file
 done
 """

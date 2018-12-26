@@ -38,7 +38,7 @@ if [ -f $result_f ]; then
     rm $result_f
 fi
 
-echo "file_name, size, is_empty" > $result_f
+echo "file_name,size,is_empty" > $result_f
 
 f_num=($f_sub_list)
 f_num=${#f_num[@]}
@@ -70,7 +70,7 @@ for fp_sub in $fp_sub_list; do
 		is_empty='No'
 	    fi
 	    ## Get final results
-	    final_results="${f_name}, ${f_size}, ${is_empty}"
+	    final_results="${f_name},${f_size},${is_empty}"
 	    echo "${final_results}" >> $result_f
 	done
     fi

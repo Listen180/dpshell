@@ -38,7 +38,7 @@ f_count=0
 f_index=0
 f_index_true=0
 
-echo "file_name, rwx_au, size, page_num" > $result_f
+echo "file_name,rwx_au,size,page_num" > $result_f
 
 rm -r $1/sub_folder
 mkdir $1/sub_folder
@@ -93,7 +93,7 @@ for file in $file_list; do
 #        div=1024
 #        pdf_size=expr $pdf_size/$div
         
-        final_result=""$file_name", ${rwx_au}, $pdf_size, $pdf_page"
+        final_result=""$file_name",${rwx_au},$pdf_size,$pdf_page"
         echo "${final_result}" >> $result_f
     fi
 done
