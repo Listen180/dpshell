@@ -20,15 +20,15 @@ isempty
 
 .. code-block:: shell
 
-   Usage: isempty [OPTIONS] PKG_DIR
+   Usage: isempty [OPTIONS] FILE_DIR
 
-     Python command line tool to check empty file.  
+     Python command line tool to check empty files.  
      Example:      $ isempty files-directory -t txt
      Example:      $ cd files-directory
                    $ isempty . -t txt
 
    Options:
-     -t, --type          The type of files (extension).
+     -t, --type TEXT     Specify the file type.    [required]
      --help              Show this message and exit.
 
 
