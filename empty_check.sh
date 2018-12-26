@@ -31,9 +31,12 @@ suffix=.$2
 new_folder=$1_result_stats/
 
 if [ -d "$new_folder" ]; then
+    echo "  (removing previous summary folder... )"
     rm -r "$new_folder"
+    echo "  (...previous summary folder removed. )"
 fi
 mkdir "$new_folder"
+echo ""
 
 result_f="${new_folder}result_stats.csv"
 
