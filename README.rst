@@ -14,6 +14,22 @@ This is a python command line toolkit that helps to deal with file information e
 Usage
 -----
 
+isempty
+*******
+- Just run ``isempty`` in terminal, providing *folder location* and *file type (extension)*: 
+
+.. code-block:: shell
+
+   Usage: isempty [OPTIONS] PKG_DIR
+
+     Python command line tool to check empty file.  
+     Example:      $ isempty files-directory -t txt
+     Example:      $ cd files-directory
+                   $ isempty . -t txt
+
+   Options:
+     -t, --type          The type of files (extension).
+     --help              Show this message and exit.
 
 
 
