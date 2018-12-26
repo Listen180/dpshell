@@ -30,9 +30,12 @@ suffix=.$2
 
 new_folder=$1_result_stats/
 
-rm -r $1_result_stats
-mkdir $1_result_stats
-result_f="$1_result_stats/result_stats.csv"
+if [ -d "$new_folder" ]; then
+    rm -r "$new_folder"
+fi
+mkdir "$new_folder"
+
+result_f="${new_folder}result_stats.csv"
 
 if [ -f $result_f ]; then
     rm $result_f
@@ -47,32 +50,32 @@ f_index=0
 f_index_true=0
 
 for fp_sub in $fp_sub_list; do
-    if [ -d $fp_sub ]; then
-	sub_folder_name=${fp_sub#"$file_path"}
-	echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> $sub_folder_name"
-	f_list=$fp_sub/*.$2
-	let f_index=f_index+1
-	echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
-	for f in $f_list; do
-	    f_name=${f#"$fp_sub/"}
-	    ## Get file size
-	    f_size="$(wc -c < "$f")"
-	    if [ $f_size -eq 0 ]; then
-		is_empty='Yes'
-		let f_index_true=f_index_true+1
-		#cp -r $fp_sub $new_folder
-		f_wo_ext=${f%"$suffix"}
-		cp "$f_wo_ext".* "$new_folder"
-		#echo $f_name
-		#echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
-		#break
-	    else
-		is_empty='No'
-	    fi
-	    ## Get final results
-	    final_results="${f_name},${f_size},${is_empty}"
-	    echo "${final_results}" >> $result_f
-	done
+    if [ -d "$fp_sub" ]; then
+    sub_folder_name=${fp_sub#"$file_path"}
+    echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> $sub_folder_name"
+    f_list=$fp_sub/*.$2
+    let f_index=f_index+1
+    echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
+    for f in $f_list; do
+        f_name=${f#"$fp_sub/"}
+        ## Get file size
+        f_size="$(wc -c < "$f")"
+        if [ $f_size -eq 0 ]; then
+        is_empty='Yes'
+        let f_index_true=f_index_true+1
+        #cp -r $fp_sub $new_folder
+        f_wo_ext=${f%"$suffix"}
+        cp "$f_wo_ext".* "$new_folder"
+        #echo $f_name
+        #echo -ne "Progress: ${f_index}/${f_num} (empty: ${f_index_true}) \r"
+        #break
+        else
+        is_empty='No'
+        fi
+        ## Get final results
+        final_results="${f_name},${f_size},${is_empty}"
+        echo "${final_results}" >> $result_f
+    done
     fi
 done
 echo "Progress: ${f_index}/${f_num} (empty: ${f_index_true})"
@@ -112,10 +115,10 @@ for file in $file_list; do
     ## Get file size
     file_size="$(wc -c < "$file")"
     if [ $file_size == 0 ]; then
-	is_empty='Yes'
-	cp $file $new_folder
+    is_empty='Yes'
+    cp $file $new_folder
     else
-	is_empty='No'
+    is_empty='No'
     fi
     ## Get final results
     final_results="${file_name}, ${file_size}, ${is_empty}"
@@ -156,10 +159,10 @@ for file in $file_list; do
     ## Get file size
     file_size="$(wc -c < "$file")"
     if [ $file_size == 0 ]; then
-	is_empty='Yes'
-	cp $file $new_folder
+    is_empty='Yes'
+    cp $file $new_folder
     else
-	is_empty='No'
+    is_empty='No'
     fi
     ## Get final results
     final_results="${file_name}, ${file_size}, ${is_empty}"
