@@ -40,7 +40,6 @@ echo ""
 echo """  Summary folder created. 
     corresponding files will be saved in: ${new_folder} 
 """
-echo ""
 
 result_f="${new_folder}result_stats.csv"
 
