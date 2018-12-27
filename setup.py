@@ -47,7 +47,7 @@ setuptools.setup(
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
     ],
-    keywords='python package pypi shell file info extraction',
+    keywords='python, package, pypi, shell, file info extraction',
     entry_points={'console_scripts': [
         'isempty = dpshell.empty_check:main',
         ]},
