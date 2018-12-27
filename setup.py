@@ -12,9 +12,7 @@
 
 
 import setuptools
-#import sys
 import codecs
-
 #from distutils.core import setup
 
 version_number = input("Input the new version number you are going to use: ")
@@ -39,6 +37,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'auto-pypi',
+        'click',
     ],
     license="BSD 3-clause",
     classifiers=[
