@@ -37,6 +37,9 @@ setuptools.setup(
     #long_description_content_type="text/markdown",
     url="https://github.com/Listen180/pyshell",
     packages=setuptools.find_packages(),
+    install_requires=[
+        'auto-pypi',
+    ],
     license="BSD 3-clause",
     classifiers=[
         "Development Status :: 3 - Alpha",
